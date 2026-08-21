@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Classic",
+        "startYear": 1938,
+        "endYear": 1985
+    },
+    {
+        "name": "Post-Crisis",
+        "startYear": 1986,
+        "endYear": 2011
+    },
+    {
+        "name": "New 52",
+        "startYear": 2011,
+        "endYear": 2016
+    },
+    {
+        "name": "Rebirth",
+        "startYear": 2016,
+        "endYear": 2021
+    },
+    {
+        "name": "Infinite Frontier",
+        "startYear": 2021,
+        "endYear": null
+    }
+]
