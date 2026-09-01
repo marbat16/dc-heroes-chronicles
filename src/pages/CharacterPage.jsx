@@ -1,7 +1,7 @@
 import { Link, useAsyncError, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCharacterByID, getIssueById } from "../utils/api";
-import IssueCard from "../components/IssueCard";
+import IssueCard from "../components/IssueCard/IssueCard";
 import universesData from "../data/universesData.json";
 import { all } from "axios";
 
@@ -170,7 +170,12 @@ export default function CharacterPage() {
       </div>
       <div>
         {offset < allIssueIds.length && (
-          <button onClick={loadMoreIssues}>Загрузить ещё</button>
+          <div>
+            <progress value={loadedIssues.length} max={allIssueIds.length} />
+            <p>(Загружено {loadedIssues.length} из {allIssueIds.length} выпусков)</p>
+            <button onClick={loadMoreIssues}>Загрузить ещё</button>
+            <p>Чтобы увидеть полную хронологию, нажмите "Загрузить ещё"*</p>
+          </div>
         )}
       </div>
     </>

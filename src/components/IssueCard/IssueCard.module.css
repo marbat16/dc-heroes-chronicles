@@ -1,0 +1,20 @@
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.statusText {
+  display: none;
+  color: #fff; 
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.statusVisible {
+  display: inline-block;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: #00F3FF;
+}
