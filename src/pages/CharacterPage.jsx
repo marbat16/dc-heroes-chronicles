@@ -15,6 +15,7 @@ export default function CharacterPage() {
   const [allIssueIds, setAllIssuesIds] = useState([]);
   const [loadedIssues, setLoadedIssues] = useState([]);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [isLoadingIssues, setIsLoadingIssues] = useState(true);
 
   function issuesUnivers(listIssues, universes) {
     const group = {};
@@ -56,12 +57,13 @@ export default function CharacterPage() {
   const loadMoreIssues = async () => {
     if (loadingMore || offset >= allIssueIds.length) return;
     setLoadingMore(true);
-    const IssuesPart = allIssueIds.slice(offset, offset + 10);
+    setIsLoadingIssues(true);
+    const IssuesPart = allIssueIds.slice(offset, offset + 30);
     const newIssues = [];
     for (const id of IssuesPart) {
       try {
         const result = await getIssueById(`4000-${id}`);
-
+        console.log(result)
         if (result && result.id) {
           newIssues.push(result);
         } else {
@@ -78,7 +80,7 @@ export default function CharacterPage() {
       setLoadedIssues((issues) => {
         const combined = [...issues, ...sortedNew];
 
-        if (offset + 10 >= allIssueIds.length) {
+        if (offset + 30 >= allIssueIds.length) {
           return combined.sort(
             (a, b) => new Date(a.cover_date) - new Date(b.cover_date),
           );
@@ -86,8 +88,9 @@ export default function CharacterPage() {
         return combined;
       });
     }
-    setOffset((prev) => prev + 10);
+    setOffset((prev) => prev + 30);
     setLoadingMore(false);
+    setIsLoadingIssues(false);
   };
 
   useEffect(() => {
@@ -109,6 +112,9 @@ export default function CharacterPage() {
     if (character?.issue_credits) {
       const ids = character.issue_credits.map((issue) => issue.id);
       setAllIssuesIds(ids);
+      if (ids.length === 0){
+        setIsLoadingIssues(false)
+      }
       console.log("character.issue_credits:", character.issue_credits);
     }
   }, [character]);
@@ -130,7 +136,7 @@ export default function CharacterPage() {
     }
   }, [loadedIssues]);
 
-  if (loading) {
+  if (loading || isLoadingIssues) {
     return <h1>Загрузка...</h1>;
   }
 
@@ -143,43 +149,55 @@ export default function CharacterPage() {
   }
 
   const universeNames = groupedIssue ? Object.keys(groupedIssue) : [];
+  let renderIssues;
+  
+  if (groupedIssue && universeNames.length > 0) {
+    renderIssues = (
+      <>
+        <div>
+          {universeNames.map((name) => (
+            <button
+              key={name}
+              onClick={() => setActiveUnivers(name)}
+              style={{
+                fontWeight: activeUnivers === name ? "bold" : "normal",
+                borderBottom:
+                  activeUnivers === name ? "2px solid #e63946" : "none",
+              }}
+            >
+              {name}
+            </button>
+          ))}
+        </div>
+        <div>
+          {activeUnivers &&
+            groupedIssue[activeUnivers]?.map((issue) => {
+              console.log("ID выпуска:", issue.id, issue.name);
+              return <IssueCard key={issue.id} issue={issue} />;
+            })}
+        </div>
+        <div>
+          {offset < allIssueIds.length && (
+            <div>
+              <progress value={loadedIssues.length} max={allIssueIds.length} />
+              <p>
+                (Загружено {loadedIssues.length} из {allIssueIds.length}{" "}
+                выпусков)
+              </p>
+              <button onClick={loadMoreIssues}>Загрузить ещё</button>
+              <p>Чтобы увидеть полную хронологию, нажмите "Загрузить ещё"*</p>
+            </div>
+          )}
+        </div>
+      </>
+    );
+  } else {
+    renderIssues = <p>Нет выпусков для этого персонажа</p>;
+  }
 
-  return groupedIssue && universeNames.length > 0 ? (
+  return (
     <>
-      <div>
-        {universeNames.map((name) => (
-          <button
-            key={name}
-            onClick={() => setActiveUnivers(name)}
-            style={{
-              fontWeight: activeUnivers === name ? "bold" : "normal",
-              borderBottom:
-                activeUnivers === name ? "2px solid #e63946" : "none",
-            }}
-          >
-            {name}
-          </button>
-        ))}
-      </div>
-      <div>
-        {activeUnivers &&
-          groupedIssue[activeUnivers]?.map((issue) => {
-            console.log("ID выпуска:", issue.id, issue.name);
-            return <IssueCard key={issue.id} issue={issue} />;
-          })}
-      </div>
-      <div>
-        {offset < allIssueIds.length && (
-          <div>
-            <progress value={loadedIssues.length} max={allIssueIds.length} />
-            <p>(Загружено {loadedIssues.length} из {allIssueIds.length} выпусков)</p>
-            <button onClick={loadMoreIssues}>Загрузить ещё</button>
-            <p>Чтобы увидеть полную хронологию, нажмите "Загрузить ещё"*</p>
-          </div>
-        )}
-      </div>
-    </>
-  ) : (
-    <p>Нет выпусков для этого персонажа</p>
-  );
+   {renderIssues}
+   </>
+  )
 }

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "1699",
+    "name": "Batman",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/11144/111442876/8759934-jrjrhr.jpg"
+    },
+    "deck": "Bruce Wayne, who witnessed the murder of his billionaire parents as a child, swore to avenge their deaths. He trained extensively to achieve mental and physical perfection, mastering martial arts, detective skills, and criminal psychology. Costumed as a bat to prey on the fears of criminals, and utilizing a high-tech arsenal, he became the legendary Batman."
+  },
+  {
+    "id": "1807",
+    "name": "Superman",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/11174/111743204/9725017-actioncomics%231081davidtalaski.jpg"
+    },
+    "deck": "Sent to Earth as an infant from the dying planet Krypton, Kal-El was adopted by the loving Kent family and raised in America's heartland as Clark Kent. Using his immense solar-fueled powers, he became Superman to defend mankind against all manner of threats while championing truth, justice, and the American way!"
+  },
+  {
+    "id": "2048",
+    "name": "Wonder Woman",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/12/124259/8988502-ezgif-5-6e9998db59.jpg"
+    },
+    "deck": "The Amazon princess, blessed with god-like super abilities, Wonder Woman is one of Earth's most powerful defenders of peace, justice, and equality and a member of the Justice League. She is considered an archetype for many heroines outside of comic book. Her initial origin depicted her as a clay baby brought to life by patron goddess Aphrodite, but in recent years she has been depicted as the daughter of Zeus and Amazon queen Hippolyta."
+  },
+  {
+    "id": "22804",
+    "name": "The Flash",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/4/46646/8070920-1725179445-2ebcd.jpg"
+    },
+    "deck": "Having discovered his mother murdered and his father blamed for the act, forensic scientist Barry Allen sought to clear his father's name and find the real killer. After being doused in chemicals and struck by lightning, Barry was granted the gift of super-speed. Now he protects his hometown of Central City as The Flash, the fastest man alive and founding member of the Justice League."
+  },
+  {
+    "id": "11202",
+    "name": "Green Lantern",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/12/124259/9439462-green-lantern-16-main-cover-675x1024.jpg"
+    },
+    "deck": "With the ability to overcome great fear and harness the power of will, test-pilot Hal Jordan was chosen to be the Green Lantern of Sector 2814 inheriting the ring of the dying alien Green Lantern, Abin Sur. He later on went to creating his own power ring from his own will power. Through sheer will power and determination, Hal has established an impressive record of heroism across the galaxy with the help of his fellow Green Lanterns as well as his peers in the Justice League."
+  },
+  {
+    "id": "2357",
+    "name": "Aquaman",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/12/124259/9609856-ezgif-3-c48330599a.jpg"
+    },
+    "deck": "The son of an Atlantean queen and a lighthouse keeper from the town of Amnesty Bay, Arthur Curry would grow up to become the superhero Aquaman, and later take on his birthright as the King of Atlantis. He is a founding member of the Justice League and is among DC Comics' most recognized heroes."
+  },
+  {
+    "id": "1691",
+    "name": "Nightwing",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/12/124259/9337371-nightwing-113-open-to-order-artist-spotlight-variant-lee.jpg"
+    },
+    "deck": "As the first Robin, Dick Grayson was the most famous sidekick in comic book history. As he ventured forth on his own, he formed the Teen Titans and became their leader. When the boy became a man, he became the independent hero known as Nightwing."
+  },
+  {
+    "id": "6849",
+    "name": "Red Hood",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/11156/111564182/9829248-c67adm0250jf1.jpg"
+    },
+    "deck": "Jason Todd was the second Robin, until he was brutally murdered by the Joker. After he was resurrected, Jason learned Batman didn't avenge his death. Anguished and seeking vengeance, he initially turned against his mentor and father figure and took on the Clown Prince's former identity: the Red Hood. He eventually returned to the Bat-Family and assembled a team of anti-heroes known as the Outlaws."
+  },
+  {
+    "id": "5368",
+    "name": "Batgirl",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/1/15776/10071325-barbara_gordon.jpg"
+    },
+    "deck": "Barbara Gordon was the first modern age Batgirl until she was brutally shot by the Joker, rendering her paralyzed from the waist down. Barbara reinvented herself as Oracle, providing intelligence to the DCU heroes and leading the Birds of Prey. She has recently become Batgirl once again to protect Gotham City."
+  },
+  {
+    "id": "1696",
+    "name": "Harley Quinn",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/11156/111564182/10136287-harley-quinn_67_oto-3_chew.jpg"
+    },
+    "deck": "Harleen Quinzel was a psychiatric resident at Arkham Asylum, where she met the incarcerated Joker. Falling in love with her patient, she conspired to break him out of prison and eventually became his lover and loyal sidekick, Harley Quinn. She eventually left him to be her own woman, and has been enemy and ally of Batman, and various other heroes."
+  },
+  {
+    "id": "2351",
+    "name": "Supergirl",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/11156/111564182/9666589-supergirl-2-oto-artgerm.jpg"
+    },
+    "deck": "Kara Zor-El is Superman's cousin and last survivor of Krypton's Argo City. She has a brash and defiant personality that she developed in response to the destruction of Krypton. Currently, she's operating out of National City alongside the D.E.O."
+  },
+  {
+    "id": "1702",
+    "name": "Joker",
+    "image": {
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/11156/111564182/10110910-latest.jpg"
+    },
+    "deck": "Joker"
+  }
+]

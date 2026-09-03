@@ -12,7 +12,7 @@ export default function IssueCard({ issue }) {
     <div>
       <img
         src={
-          issue.image?.medium_url ||
+          issue.image?.thumb_url ||
           "https://placehold.co/300x400/333/white?text=No+Image"
         }
         alt={issue.name || "Выпуск"}

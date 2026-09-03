@@ -3,6 +3,8 @@ import CharacterCard from "../components/CharacterCard";
 import { getCharacters, searchCharacters } from "../utils/api";
 import { Link } from "react-router-dom";
 import getCharacterID from "../utils/idHelplers";
+import Modal from "../components/Modal/Modal";
+import popularCharacters from "../data/popularCharacters.json";
 
 export default function HomePage() {
   const [datacharacter, setDatacharacter] = useState([]);
@@ -10,9 +12,10 @@ export default function HomePage() {
   const [request, setRequest] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const timerRef = useRef(null);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
 
   useEffect(() => {
-    getCharacters(50)
+    getCharacters(18)
       .then((data) => {
         console.log("Ответ API:", data);
         const dcCharacters = data.filter(
@@ -39,6 +42,14 @@ export default function HomePage() {
     }
   }, [request]);
 
+  const handleCardClick = (character) => {
+    setSelectedCharacter(character);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedCharacter(null);
+  };
+
   let renderCards;
   if (request && searchResults.length === 0) {
     renderCards = <p>Персонаж не найден</p>;
@@ -50,20 +61,43 @@ export default function HomePage() {
           name={character.name}
           image={character.image?.medium_url}
           id={getCharacterID(character)}
+          onClick={() => handleCardClick(character)}
         ></CharacterCard>
       );
     });
   } else {
-    renderCards = datacharacter.map((character) => {
-      return (
-        <CharacterCard
-          key={character.id}
-          name={character.name}
-          image={character.image?.medium_url}
-          id={getCharacterID(character)}
-        ></CharacterCard>
-      );
-    });
+    renderCards = (
+      <>
+        <div>
+          <h2>Популярные персонажи</h2>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+            {popularCharacters.map((character) => (
+              <CharacterCard
+                key={character.id}
+                name={character.name}
+                image={character.image?.medium_url}
+                id={character.id}
+                onClick={() => handleCardClick(character)}
+              />
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2>Все персонажи</h2>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+            {datacharacter.map((character) => (
+              <CharacterCard
+                key={character.id}
+                name={character.name}
+                image={character.image?.medium_url}
+                id={getCharacterID(character)}
+                onClick={() => handleCardClick(character)}
+              />
+            ))}
+          </div>
+        </div>
+      </>
+    );
   }
 
   return (
@@ -97,6 +131,7 @@ export default function HomePage() {
       >
         {renderCards}
       </div>
+      <Modal character={selectedCharacter} onClose={handleCloseModal} />
     </>
   );
 }
