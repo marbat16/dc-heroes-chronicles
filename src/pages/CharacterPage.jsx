@@ -1,9 +1,11 @@
-import { Link, useAsyncError, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCharacterByID, getIssueById } from "../utils/api";
 import IssueCard from "../components/IssueCard/IssueCard";
 import universesData from "../data/universesData.json";
-import { all } from "axios";
+import styles from "./CharacterPage.module.css";
+import Header from "../components/Header/Header";
+import Loader from "../components/Loader/Loader";
 
 export default function CharacterPage() {
   const { id } = useParams();
@@ -58,12 +60,12 @@ export default function CharacterPage() {
     if (loadingMore || offset >= allIssueIds.length) return;
     setLoadingMore(true);
     setIsLoadingIssues(true);
-    const IssuesPart = allIssueIds.slice(offset, offset + 30);
+    const IssuesPart = allIssueIds.slice(offset, offset + 20);
     const newIssues = [];
     for (const id of IssuesPart) {
       try {
         const result = await getIssueById(`4000-${id}`);
-        console.log(result)
+        console.log(result);
         if (result && result.id) {
           newIssues.push(result);
         } else {
@@ -80,7 +82,7 @@ export default function CharacterPage() {
       setLoadedIssues((issues) => {
         const combined = [...issues, ...sortedNew];
 
-        if (offset + 30 >= allIssueIds.length) {
+        if (offset + 20 >= allIssueIds.length) {
           return combined.sort(
             (a, b) => new Date(a.cover_date) - new Date(b.cover_date),
           );
@@ -88,7 +90,7 @@ export default function CharacterPage() {
         return combined;
       });
     }
-    setOffset((prev) => prev + 30);
+    setOffset((prev) => prev + 20);
     setLoadingMore(false);
     setIsLoadingIssues(false);
   };
@@ -97,7 +99,6 @@ export default function CharacterPage() {
     const fetchCharacter = async () => {
       try {
         const data = await getCharacterByID(id);
-        console.log("Ищи Publisher", data);
         setCharacter(data);
       } catch (err) {
         console.error("Ошибка загрузки:", err);
@@ -112,8 +113,8 @@ export default function CharacterPage() {
     if (character?.issue_credits) {
       const ids = character.issue_credits.map((issue) => issue.id);
       setAllIssuesIds(ids);
-      if (ids.length === 0){
-        setIsLoadingIssues(false)
+      if (ids.length === 0) {
+        setIsLoadingIssues(false);
       }
       console.log("character.issue_credits:", character.issue_credits);
     }
@@ -137,8 +138,15 @@ export default function CharacterPage() {
   }, [loadedIssues]);
 
   if (loading || isLoadingIssues) {
-    return <h1>Загрузка...</h1>;
-  }
+    return (
+    <div className={styles.pageWrapper}>
+      <Header />
+      <div className={styles.content}>
+        <Loader text="Loading character..." />
+      </div>
+    </div>
+  );
+}
 
   if (!character) {
     return (
@@ -147,48 +155,63 @@ export default function CharacterPage() {
       </>
     );
   }
+  const characterHeader = (
+    <div className={styles.characterHeader}>
+      <Link to="/" className={styles.backButton}>
+        ← Home page
+      </Link>
+      <h1 className={styles.characterName}>{character.name}</h1>
+      {character.deck && (
+        <p className={styles.characterDeck}>{character.deck}</p>
+      )}
+    </div>
+  );
 
   const universeNames = groupedIssue ? Object.keys(groupedIssue) : [];
+
   let renderIssues;
-  
   if (groupedIssue && universeNames.length > 0) {
     renderIssues = (
       <>
-        <div>
+        {characterHeader}
+        <div className={styles.tabs}>
           {universeNames.map((name) => (
             <button
               key={name}
               onClick={() => setActiveUnivers(name)}
-              style={{
-                fontWeight: activeUnivers === name ? "bold" : "normal",
-                borderBottom:
-                  activeUnivers === name ? "2px solid #e63946" : "none",
-              }}
+              className={`${styles.tab} ${activeUnivers === name ? styles.tabActive : ""}`}
             >
               {name}
             </button>
           ))}
         </div>
-        <div>
+        <div className={styles.issuesList}>
           {activeUnivers &&
             groupedIssue[activeUnivers]?.map((issue) => {
-              console.log("ID выпуска:", issue.id, issue.name);
               return <IssueCard key={issue.id} issue={issue} />;
             })}
         </div>
-        <div>
-          {offset < allIssueIds.length && (
-            <div>
-              <progress value={loadedIssues.length} max={allIssueIds.length} />
-              <p>
-                (Загружено {loadedIssues.length} из {allIssueIds.length}{" "}
-                выпусков)
-              </p>
-              <button onClick={loadMoreIssues}>Загрузить ещё</button>
-              <p>Чтобы увидеть полную хронологию, нажмите "Загрузить ещё"*</p>
+        {offset < allIssueIds.length && (
+          <div className={styles.loadMoreBlock}>
+            <p className={styles.progressText}>
+              Loaded {loadedIssues.length} of {allIssueIds.length} issues
+            </p>
+            <div className={styles.progressBar}>
+              <div
+                className={styles.progressFill}
+                style={{
+                  width: `${(loadedIssues.length / allIssueIds.length) * 100}%`,
+                }}
+              ></div>
             </div>
-          )}
-        </div>
+            <button onClick={loadMoreIssues} className={styles.loadMoreButton}>
+              Load more
+            </button>
+            <p className={styles.hint}>
+              To see a more complete timeline, click "Load more"*
+            </p>
+          </div>
+        )}
       </>
     );
   } else {
@@ -196,8 +219,9 @@ export default function CharacterPage() {
   }
 
   return (
-    <>
-   {renderIssues}
-   </>
-  )
+    <div className={styles.pageWrapper}>
+      <Header />
+      <main className={styles.content}>{renderIssues}</main>
+    </div>
+  );
 }

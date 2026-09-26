@@ -1,20 +1,193 @@
-label {
+.card {
   display: flex;
   align-items: center;
-  gap: 8px; 
+  gap: 16px;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 12px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .card:hover {
+    border-color: #00e5ff;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+    transform: translateX(4px);
+  }
+}
+
+
+.imageWrapper {
+  flex-shrink: 0;
+  width: 70px;
+  height: 100px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #0d1117;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.date {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  color: #8b949e;
+  margin: 0;
+}
+
+.issueNumber {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 14px;
+  color: #00e5ff;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+
+.readLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
 }
 
 .statusText {
-  display: none;
-  color: #fff; 
-  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  color: #8b949e;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  white-space: nowrap;
   text-transform: uppercase;
 }
 
+
 .statusVisible {
-  display: inline-block;
+  opacity: 1;
+  color: #00e5ff;
 }
 
-input[type="checkbox"]:checked {
-  accent-color: #00F3FF;
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+.checkboxCustom {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #30363d;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.checkboxCustom::after {
+  content: "";
+  width: 6px;
+  height: 12px;
+  border: solid #0d1117;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.2s ease;
+  position: absolute;
+  top: 1px;
+}
+
+.checkbox:checked + .checkboxCustom {
+  background-color: #00e5ff;
+  border-color: #00e5ff;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+}
+
+.checkbox:checked + .checkboxboxCustom::after {
+  transform: rotate(45deg) scale(1);
+}
+
+@media (max-width: 768px) {
+  .card {
+    gap: 12px;
+    padding: 10px;
+  }
+
+
+  .imageWrapper {
+    width: 55px;
+    height: 80px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .date {
+    font-size: 12px;
+  }
+
+  .statusText {
+    display: none;
+  }
+
+  .checkboxCustom {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    gap: 10px;
+    padding: 8px;
+  }
+
+  .imageWrapper {
+    width: 48px;
+    height: 70px;
+  }
+
+  .title {
+    font-size: 13px;
+  }
+
+  .date {
+    font-size: 11px;
+  }
+
+  .issueNumber {
+    font-size: 12px;
+  }
 }

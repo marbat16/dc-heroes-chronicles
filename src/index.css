@@ -1,3 +1,5 @@
+/* Modern CSS Reset (adapted from Alexey Gusev's reset) */
+
 /**
   Нормализация блочной модели
  */
@@ -28,18 +30,7 @@ body,
   Убираем внешние отступы вертикали нужным тегам,
   у которых есть атрибут class
  */
-:where(
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  ul,
-  ol,
-  dl
-):where([class]) {
+:where(h4, h5, h6, p, ul, ol, dl):where([class]) {
   margin-block: 0;
 }
 
@@ -83,7 +74,6 @@ p:where(:not([class]):not(:last-child)) {
   margin-bottom: var(--paragraphMarginBottom);
 }
 
-
 /**
   Упрощаем работу с изображениями и видео
  */
@@ -119,6 +109,8 @@ html {
     Плавный скролл
    */
   scroll-behavior: smooth;
+
+  max-width: 100%;
 }
 
 body {
@@ -131,6 +123,8 @@ body {
     Унифицированный интерлиньяж
    */
   line-height: 1.5;
+
+  max-width: 100%;
 }
 
 /**
@@ -160,10 +154,7 @@ button {
   (за исключением тех, у которых уже указан
   атрибут fill со значением 'none' или начинается с 'url')
  */
-:where([fill]:not(
-  [fill="none"],
-  [fill^="url"]
-)) {
+:where([fill]:not([fill="none"], [fill^="url"])) {
   fill: currentColor;
 }
 
@@ -172,10 +163,7 @@ button {
   (за исключением тех, у которых уже указан
   атрибут stroke со значением 'none')
  */
-:where([stroke]:not(
-  [stroke="none"],
-  [stroke^="url"]
-)) {
+:where([stroke]:not([stroke="none"], [stroke^="url"])) {
   stroke: currentColor;
 }
 
@@ -209,24 +197,13 @@ svg * {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 /* ----- Глобальные переменные ----- */
 :root {
   --bg-color: #0d0d0d;
   --text-color: #ffffff;
   --card-bg: #1a1a1a;
   --border-color: #333333;
-  --accent: #e63946;
+  --accent: #00e5ff;
   --radius: 8px;
   --transition: 0.2s ease;
 }
@@ -241,15 +218,33 @@ svg * {
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    "Montserrat",
+    system-ui,
+    -apple-system,
+    sans-serif;
   line-height: 1.5;
   min-height: 100vh;
-  padding: 20px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: var(--text-color);
   margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 2rem; 
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.5rem; 
+}
+
+h3 {
+  font-size: 1.2rem; 
 }
 
 a {
@@ -263,97 +258,8 @@ img {
   height: auto;
 }
 
-/* ----- Контейнер ----- */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ----- Карточки ----- */
-.card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 16px;
-  width: 250px;
-  text-align: center;
-  transition: transform var(--transition);
-  cursor: pointer;
-}
-
-.card:hover {
-  transform: scale(1.03);
-}
-
-.card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: calc(var(--radius) - 4px);
-  margin-bottom: 12px;
-  background: #2a2a2a;
-}
-
-.card h3 {
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-/* ----- Страница персонажа ----- */
-.character-page {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.character-page img {
-  width: 200px;
-  height: auto;
-  border-radius: var(--radius);
-  margin-bottom: 20px;
-}
-
-/* ----- Список выпусков ----- */
-.issue-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.issue-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 12px;
-  width: 200px;
-  text-align: center;
-}
-
-.issue-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: calc(var(--radius) - 4px);
-  margin-bottom: 8px;
-  background: #2a2a2a;
-}
-
-.issue-card h4 {
-  font-size: 0.95rem;
-  margin: 0 0 4px;
-}
-
-.issue-card p {
-  font-size: 0.8rem;
-  color: #aaa;
-  margin: 0;
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
 }

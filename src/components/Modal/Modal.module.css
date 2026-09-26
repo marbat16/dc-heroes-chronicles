@@ -1,0 +1,267 @@
+.modalBody {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: auto;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.modalContent {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  height: 600px;
+  max-height: 85vh;
+  overflow: hidden;
+  color: #ffffff;
+  box-shadow: 0 0 40px rgba(0, 229, 255, 0.15);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  animation: slideUp 0.3s ease-out;
+}
+
+.modalImageWrapper {
+  flex: 0 0 40%; 
+  position: relative;
+  overflow: hidden;
+  background-color: #0d1117;
+}
+
+.modalClose {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(13, 17, 23, 0.8);
+  border: 1px solid #30363d;
+  color: #ffffff;
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+.modalClose:hover {
+  background-color: #00e5ff;
+  color: #0d1117;
+  border-color: #00e5ff;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+}
+
+.modalImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.modalImageWrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(to left, #161b22 0%, transparent 35%);
+  pointer-events: none;
+}
+
+.modalName {
+  font-size: 48px;
+  font-family: "Bebas Neue", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+.modalDescription {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #c9d1d9;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.modalLink {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 14px 32px;
+  background-color: transparent;
+  border: 1px solid #00e5ff;
+  color: #00e5ff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-top: 8px;
+
+}
+
+.modalLink:hover {
+  background-color: #00e5ff;
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modalContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 3px;
+}
+
+.modalContent::-webkit-scrollbar-thumb:hover {
+  background: #00e5ff;
+}
+
+@media (max-width: 768px) {
+  .modalContent {
+    flex-direction: column;
+    height: auto;
+    max-height: 80vh;
+    max-width: 80%;
+  }
+
+  .modalImageWrapper {
+    flex: 0 0 280px;
+    height: 280px;
+  }
+
+  .modalContent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: linear-gradient(to top, #161b22 35%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+
+  }
+
+  .modalBody {
+    padding: 24px;
+  }
+
+  .modalName {
+    font-size: 32px;
+  }
+
+  .modalDescription {
+    font-size: 14px;
+  }
+
+  .modalLink {
+    padding: 12px 24px;
+    font-size: 13px;
+    z-index: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalImageWrapper {
+    flex: 0 0 300px;
+    height: 300px;
+  }
+
+  .modalBody {
+    padding: 20px;
+  }
+
+  .modalName {
+    font-size: 26px;
+  }
+
+  .modalImage {
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .modalImageWrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to top, #161b22 0%, transparent 35%);
+    pointer-events: none;
+  }
+
+  .modalClose {
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+    .modalLink {
+    padding: 12px 24px;
+    font-size: 10px;
+    z-index: 2;
+  }
+  
+}

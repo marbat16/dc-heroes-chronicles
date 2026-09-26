@@ -2,19 +2,10 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = "https://comicvine.gamespot.com/api";
 
 export const getCharacters = async (limit = 10) => {
-  // const response = await fetch(
-  //   `https://corsproxy.io/?https://comicvine.gamespot.com/api/characters/?api_key=${API_KEY}&format=json&field_list=id,name,image,deck,publisher&filter=date_last_updated,publisher:DC`,
-  // );
 
   const response = await fetch(
     `https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/characters/?api_key=${API_KEY}&format=json&field_list=id,name,image,deck,publisher&limit=${limit}&filter=date_last_updated,publisher:DC`,
   );
-
-  // const response = await fetch(`/api/characters/?api_key=${API_KEY}&format=json&limit=10`)
-
-  // const respons = await fetch(
-  //   `${BASE_URL}/characters/?api_key=${API_KEY}&format=json&limit=${limit}&filter=publisher:DC&filed_list=id,name,image,deck`,
-  // );
 
   const data = await response.json();
   return data.results;
