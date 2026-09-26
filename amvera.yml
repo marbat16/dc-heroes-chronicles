@@ -8,5 +8,5 @@ build:
   additionalCommands: npm run build
 
 run:
-  scriptName: server.js
+  scriptName: server.cjs
   containerPort: 80
