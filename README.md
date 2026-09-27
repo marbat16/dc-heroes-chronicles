@@ -4,7 +4,8 @@
 
 ## 🚀 Демо
 
-**[Открыть сайт](https://chronicles-dc-mariam16066.amvera.io/)**
+- **Сайт:** [chronicles-dc-mariam16066.amvera.io](https://chronicles-dc-mariam16066.amvera.io/)
+- **Репозиторий:** [github.com/marbat16/dc-heroes-chronicles](https://github.com/marbat16/dc-heroes-chronicles)
 
 ## ✨ Возможности
 
