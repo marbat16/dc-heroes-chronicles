@@ -1,4 +1,4 @@
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY = "98077f51e2e280a824a32a509e9fb3cae22f58b1";
 
 export const getCharacters = async (limit = 10) => {
   const response = await fetch(
