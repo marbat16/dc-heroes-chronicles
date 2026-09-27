@@ -1,16 +1,60 @@
-# React + Vite
+# DC Heroes Chronicles: A Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Сайт-гид по хронологии персонажей DC Comics. Пользователь может искать героев, смотреть их хронологию по вселенным (New 52, Rebirth и т.д.) и отмечать прочитанные выпуски.
 
-Currently, two official plugins are available:
+## 🚀 Демо
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**[Открыть сайт](https://chronicles-dc-mariam16066.amvera.io/)**
 
-## React Compiler
+## ✨ Возможности
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Поиск персонажей** — через API Comic Vine
+- **Хронология выпусков** — с сортировкой по дате
+- **Группировка по вселенным** — New 52, Rebirth, Classic и другие
+- **Отметка "Прочитано"** — сохраняется в localStorage
+- **Модальное окно** — с картинкой, именем и описанием персонажа
+- **Пагинация** — подгрузка выпусков по 30 штук
+- **Адаптивный дизайн** — тёмная тема в стиле DC
 
-## Expanding the ESLint configuration
+## 🛠 Технологии
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React** — UI-библиотека
+- **React Router** — маршрутизация
+- **Vite** — сборка
+- **CSS Modules** — стилизация
+- **Comic Vine API** — источник данных
+- **Node.js + Express** — прокси-сервер для обхода CORS
+- **Amvera** — хостинг (работает в России без VPN)
+
+## 📦 Запуск локально
+
+```bash
+# Клонировать репозиторий
+git clone https://github.com/marbat16/dc-heroes-chronicles.git
+
+# Перейти в папку
+cd dc-heroes-chronicles
+
+# Установить зависимости
+npm install
+
+# Запустить dev-сервер
+npm run dev
+```
+## 🔧 Сборка
+```bash
+npm run build
+```
+## 📝 Лицензия
+Проект создан в учебных целях.
+
+## 📸 Скриншоты
+
+### Главная страница
+![Главная страница](./screenshots/home.png)
+
+### Страница персонажа с хронологией
+![Страница персонажа](./screenshots/character.png)
+
+### Модальное окно с описанием
+![Модальное окно](./screenshots/modal.png)
